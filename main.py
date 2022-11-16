@@ -11,7 +11,7 @@ screen.fill(THECOLORS['purple'])
 
 clock = pygame.time.Clock()
 i = 0
-
+##############################################
 x = k // 2
 y = m // 2
 speed = 10
