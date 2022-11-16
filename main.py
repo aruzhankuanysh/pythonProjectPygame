@@ -4,40 +4,30 @@ from pygame.color import THECOLORS
 
 pygame.init()
 
-k = 1000
-m = 1000
-screen = pygame.display.set_mode((k, m))
-screen.fill(THECOLORS['purple'])
+W = 1000
+H = 1000
+screen = pygame.display.set_mode((W, H))
+pygame.display.set_caption("MyGameFox")
+pygame.display.set_icon(pygame.image.load('sprites/fox/Fox1.png'))
+
+screen.fill(THECOLORS['white'])
 
 clock = pygame.time.Clock()
-i = 0
 
-x = k // 2
-y = m // 2
-speed = 10
+hero = pygame.Surface((40, 50))
+hero.fill(THECOLORS['blue'])
+rect = hero.get_rect()
+print(rect)
 
-flLeft = flRight = flUp = flDown = False
+screen.fill(THECOLORS['white'])
+screen.blit(hero, (100, 50))
 pygame.display.update()
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
+            exit()
 
-    keys = pygame.key.get_pressed()
-
-    if keys[pygame.K_LEFT]:
-        x -= speed
-    elif keys[pygame.K_RIGHT]:
-        x += speed
-    elif keys[pygame.K_UP]:
-        y -= speed
-    elif keys[pygame.K_DOWN]:
-        y += speed
-
-    screen.fill(THECOLORS['purple'])
-    pygame.draw.rect(screen, THECOLORS['cyan'], (x, y, 10, 20))
-    pygame.display.update()
     clock.tick(60)
 
 

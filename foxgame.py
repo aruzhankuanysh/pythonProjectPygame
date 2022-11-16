@@ -8,10 +8,10 @@ k = 1000
 m = 1000
 screen = pygame.display.set_mode((k, m))
 
-Fox = [pygame.image.load(f"C:/Users/GosUser_02/pythonProjectPygame/sprites/fox/Fox{i}.png") for i in range(1, 6)]
-FoxWatch = [pygame.image.load(f"C:/Users/GosUser_02/pythonProjectPygame/sprites/foxwatch/FoxWatch{i}.png") for i in range(1, 14)]
-FoxRun = [pygame.image.load(f"C:/Users/GosUser_02/pythonProjectPygame/sprites/foxrun/FoxRun{i}.png") for i in range(1, 9)]
-FoxJump = [pygame.image.load(f"C:/Users/GosUser_02/pythonProjectPygame/sprites/foxjump/FoxJump{i}.png") for i in range(1, 11)]
+Fox = [pygame.image.load(f"sprites/fox/Fox{i}.png") for i in range(1, 6)]
+FoxRun = [pygame.image.load(f"sprites/foxrun/FoxRun{i}.png") for i in range(1, 9)]
+FoxJump = [pygame.image.load(f"sprites/foxjump/FoxJump{i}.png") for i in range(1, 11)]
+FoxWatch = [pygame.image.load(f"sprites/foxwatch/FoxWatch{i}.png") for i in range(1, 14)]
 
 clock = pygame.time.Clock()
 i = 0
@@ -72,3 +72,120 @@ while True:
         #     b = x * j
         #     j += 1
         ####################################################################################################
+pygame.init()
+
+k = 1000
+m = 1000
+screen = pygame.display.set_mode((k, m))
+screen.fill(THECOLORS['purple'])
+
+clock = pygame.time.Clock()
+i = 0
+##############################################
+x = k // 2
+y = m // 2
+speed = 10
+
+flLeft = flRight = flUp = flDown = False
+pygame.display.update()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_LEFT]:
+        x -= speed
+    elif keys[pygame.K_RIGHT]:
+        x += speed
+    elif keys[pygame.K_UP]:
+        y -= speed
+    elif keys[pygame.K_DOWN]:
+        y += speed
+
+    screen.fill(THECOLORS['purple'])
+    pygame.draw.rect(screen, THECOLORS['cyan'], (x, y, 10, 20))
+    pygame.display.update()
+    clock.tick(60)
+
+
+
+pygame.init()
+
+k = 1000
+m = 1000
+screen = pygame.display.set_mode((k, m))
+screen.fill(THECOLORS['white'])
+
+clock = pygame.time.Clock()
+i = 0
+##############################################
+flStarDraw = False
+sp = None
+
+pygame.display.update()
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit()
+    pressed = pygame.mouse.get_pressed()
+    if pressed[0]:
+        pos = pygame.mouse.get_pos()
+
+        if sp is None:
+            sp = pos
+
+        width = pos[0] - sp[0]
+        height = pos[1] - sp[1]
+
+        screen.fill(THECOLORS['white'])
+        pygame.draw.rect(screen, THECOLORS['purple'], pygame.Rect(sp[0], sp[1], width, height))
+        pygame.display.update()
+    else:
+        sp = None
+
+    clock.tick(60)
+
+
+import pygame
+import sys
+from pygame.color import THECOLORS
+
+pygame.init()
+
+W = 1000
+H = 1000
+screen = pygame.display.set_mode((W, H))
+pygame.display.set_caption("MyGameFox")
+pygame.display.set_icon(pygame.image.load('sprites/fox/Fox1.png'))
+
+screen.fill(THECOLORS['white'])
+
+clock = pygame.time.Clock()
+
+surf = pygame.Surface((200, 200))
+surf.fill(THECOLORS['red'])
+pygame.draw.circle(surf, THECOLORS['green'], (100, 100), 80)
+
+surf_alpha = pygame.Surface((W, 100))
+pygame.draw.rect(surf_alpha, THECOLORS['blue'], (0, 0, W, 100))
+surf_alpha.set_alpha(128)
+
+surf.blit(surf_alpha, (0, 50))
+screen.blit(surf, (50, 50))
+
+pygame.display.update()
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit()
+
+    clock.tick(60)
+
+
+
+
+
